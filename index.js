@@ -48,20 +48,40 @@ process.on('beforeExit', () => pool.end());
 //   .catch(err => console.log('err', err));
 
 // Отримати кастомера з id=1
-const id = 1;
+// const id = 1;
 
-(async () => {
-  try {
-    const customer = await pool.query(`
-      SELECT *
-      FROM customers
-      WHERE id = ${id}
-    `);
-    console.log('customer.rows[0] :>> ', customer.rows[0]);
-  } catch (err) {
-    console.log('err :>> ', err);
-  }
-})();
+// (async () => {
+//   try {
+//     const customer = await pool.query(`
+//       SELECT *
+//       FROM customers
+//       WHERE id = ${id}
+//     `);
+//     console.log('customer.rows[0] :>> ', customer.rows[0]);
+//   } catch (err) {
+//     console.log('err :>> ', err);
+//   }
+// })();
+
+// (async () => {
+//   try {
+//     const customer = await pool.query(
+//       `
+//       SELECT *
+//       FROM customers
+//       WHERE id = $1
+//     `,
+//       [id]
+//     );
+//     console.log('customer.rows[0] :>> ', customer.rows[0]);
+//   } catch (err) {
+//     console.log('err :>> ', err);
+//   }
+// })();
+
+// Знайти користувача
+const fn = 'Petro1';
+const ln = 'Petrenko1';
 
 (async () => {
   try {
@@ -69,9 +89,9 @@ const id = 1;
       `
       SELECT *
       FROM customers
-      WHERE id = $1
+      WHERE first_name = $1 AND last_name = $2 
     `,
-      [id]
+      [fn, ln]
     );
     console.log('customer.rows[0] :>> ', customer.rows[0]);
   } catch (err) {
@@ -79,6 +99,24 @@ const id = 1;
   }
 })();
 
-// Знайти користувача
-const fn = 'Petro1';
-const ln = 'Petrenko1';
+// Створити замовлення користувачу с id=1
+const customer_id = 1;
+const created_at = '2023-10-10';
+
+(async () => {
+  try {
+    const order = await pool.query(
+      `
+      INSERT INTO orders (customer_id, created_at)
+      VALUES ($1, $2)
+      RETURNING *
+    `,
+      [customer_id, created_at]
+    );
+    console.log('customer.rows[0] :>> ', order.rows[0]);
+  } catch (err) {
+    console.log('err :>> ', err);
+  }
+})();
+
+//////////////////////////////////////////////////////////
