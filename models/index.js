@@ -11,9 +11,15 @@ const connectionOptions = {
 };
 
 const pool = new Pool(connectionOptions);
+pool.connect(err => {
+  if (!err) {
+    console.log('DB connection OK');
+  }
+});
 
 process.on('beforeExit', () => pool.end());
 
 Customer.pool = pool;
+Phone.pool = pool;
 
 module.exports = { Customer, Phone };
