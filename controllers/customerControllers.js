@@ -15,8 +15,16 @@ module.exports.createCustomer = async (req, res) => {
   }
 };
 
-module.exports.getAllCustomers = (req, res) => {
-  res.send('ok');
+module.exports.getAllCustomers = async (req, res) => {
+  try {
+    const foundCustomers = await Customer.getAll({
+      limit: 10,
+      offset: 0,
+    });
+    res.status(200).send(foundCustomers);
+  } catch (err) {
+    res.status(500).send('Server Error');
+  }
 };
 
 module.exports.getByIdCustomer = async (req, res) => {

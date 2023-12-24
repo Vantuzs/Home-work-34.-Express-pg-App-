@@ -19,12 +19,14 @@ class Customer {
       const selectAllQuery = `
         SELECT *
         FROM customers
+        ORDER BY id
         LIMIT ${limit} OFFSET ${offset}
       `;
       const foundCustomers = await Customer.pool.query(selectAllQuery);
       return foundCustomers.rows;
     } catch (err) {
-      console.log('err :>> ', err);
+      // console.log('err :>> ', err);
+      throw new Error(err.detail);
     }
   }
   static async getById (id) {

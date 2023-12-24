@@ -29,3 +29,7 @@ Content-Type: application/json
   "email":"mail@mail.com",
   "tel": "+380983456789"
 }
+
+### 200
+
+GET http://localhost:5000/api/customers
