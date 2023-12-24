@@ -5,3 +5,27 @@ GET http://localhost:5000/api/customers/4
 ### 404
 
 GET http://localhost:5000/api/customers/100
+
+### 201 {}
+
+POST http://localhost:5000/api/customers
+Content-Type: application/json
+
+{
+  "firstName": "Test",
+  "lastName": "Testovych",
+  "email":"mail@mail.com",
+  "tel": "+380123654789"
+}
+
+### 422 (500, 400)
+
+POST http://localhost:5000/api/customers
+Content-Type: application/json
+
+{
+  "firstName": "Test",
+  "lastName": "Testovych",
+  "email":"mail@mail.com",
+  "tel": "+380983456789"
+}

@@ -1,6 +1,19 @@
 const { Customer } = require('./../models');
 
-module.exports.createCustomer = (req, res) => {};
+module.exports.createCustomer = async (req, res) => {
+  const { body } = req;
+
+  try {
+    const createdCustomer = await Customer.create(body);
+    if (!createdCustomer) {
+      return res.status(400).send('Something went wrong');
+    }
+    res.status(201).send(createdCustomer);
+  } catch (err) {
+    console.log('err :>> ', err);
+    res.status(500).send('Server Error');
+  }
+};
 
 module.exports.getAllCustomers = (req, res) => {
   res.send('ok');

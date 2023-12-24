@@ -10,7 +10,8 @@ class Customer {
       const createdCustomer = await Customer.pool.query(insertQuery); // виконати його
       return createdCustomer.rows[0]; // повернути результат
     } catch (err) {
-      console.log('err :>> ', err); // або помилку
+      // console.log('err :>> ', err); // або помилку
+      throw new Error(err.detail);
     }
   }
   static async getAll ({ limit, offset }) {
