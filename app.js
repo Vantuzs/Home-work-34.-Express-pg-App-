@@ -7,11 +7,11 @@ app.use('/api', router);
 
 module.exports = app;
 
-// POST   /customers {body}
-// GET    /customers?page=1&results=10
-// GET    /customers/1
-// PATCH  /customers/1 {body}
-// DELETE /customers/1
+// POST   /api/customers {body}
+// GET    /api/customers?page=1&results=10
+// GET    /api/customers/1
+// PATCH  /api/customers/1 {body}
+// DELETE /api/customers/1
 
 // отримати інфо про замовлення конкретного користувача
 // GET /customers/1/orders

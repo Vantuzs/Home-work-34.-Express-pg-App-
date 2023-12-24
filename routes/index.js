@@ -1,12 +1,10 @@
 const { Router } = require('express');
+const customersRouter = require('./customersRouter');
 
+// /api
 const router = Router();
 
-router.post('/customers', (req, res) => {});
-router.get('/customers', (req, res) => {});
-router.get('/customers/:id', (req, res) => {});
-router.patch('/customers/:id', (req, res) => {});
-router.delete('/customers/:id', (req, res) => {});
+router.use('/customers', customersRouter);
 
 router.post('/phones', (req, res) => {});
 router.get('/phones', (req, res) => {});
