@@ -1,0 +1,7 @@
+### 200 {}
+
+GET http://localhost:5000/api/customers/4
+
+### 404
+
+GET http://localhost:5000/api/customers/100
