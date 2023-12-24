@@ -127,7 +127,7 @@ process.on('beforeExit', () => pool.end());
 // PATCH /customers/1 {}
 // DELETE /customers/1
 
-class User {
+class Customer {
   static async create ({ firstName, lastName, email, tel }) {
     try {
       // сформувати запит
