@@ -1,6 +1,6 @@
 const { Customer } = require('./../models');
 
-module.exports.createCustomer = async (req, res) => {
+module.exports.createCustomer = async (req, res, next) => {
   const { body } = req;
 
   try {
@@ -10,22 +10,23 @@ module.exports.createCustomer = async (req, res) => {
     }
     res.status(201).send(createdCustomer);
   } catch (err) {
-    console.log('err :>> ', err);
-    res.status(500).send('Server Error');
+    // res.status(500).send('Server Error');
+    next(err);
   }
 };
 
-module.exports.getAllCustomers = async (req, res) => {
+module.exports.getAllCustomers = async (req, res, next) => {
   const { pagination } = req;
   try {
     const foundCustomers = await Customer.getAll(pagination);
     res.status(200).send(foundCustomers);
   } catch (err) {
-    res.status(500).send('Server Error');
+    // res.status(500).send('Server Error');
+    next(err);
   }
 };
 
-module.exports.getByIdCustomer = async (req, res) => {
+module.exports.getByIdCustomer = async (req, res, next) => {
   const { id } = req.params;
 
   try {
@@ -38,13 +39,13 @@ module.exports.getByIdCustomer = async (req, res) => {
 
     res.status(200).send(foundCustomer);
   } catch (err) {
-    // TODO next(err)
-    res.status(500).send('Server Error');
+    // res.status(500).send('Server Error');
+    next(err);
   }
 };
 
-module.exports.updateByIdCustomer = (req, res) => {};
+module.exports.updateByIdCustomer = (req, res, next) => {};
 
-module.exports.deleteByIdCustomer = (req, res) => {};
+module.exports.deleteByIdCustomer = (req, res, next) => {};
 
 // {createCustomer, ..., deleteByIdCustomer}

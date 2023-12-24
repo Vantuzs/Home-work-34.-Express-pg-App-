@@ -10,7 +10,6 @@ class Customer {
       const createdCustomer = await Customer.pool.query(insertQuery); // виконати його
       return createdCustomer.rows[0]; // повернути результат
     } catch (err) {
-      // console.log('err :>> ', err); // або помилку
       throw new Error(err.detail);
     }
   }
@@ -25,7 +24,6 @@ class Customer {
       const foundCustomers = await Customer.pool.query(selectAllQuery);
       return foundCustomers.rows;
     } catch (err) {
-      // console.log('err :>> ', err);
       throw new Error(err.detail);
     }
   }
@@ -39,7 +37,7 @@ class Customer {
       const foundCustomer = await Customer.pool.query(selectQuery);
       return foundCustomer.rows[0];
     } catch (err) {
-      console.log('err :>> ', err);
+      throw new Error(err.detail);
     }
   }
   static async updateById (id, { firstName, lastName, email, tel }) {
@@ -56,7 +54,7 @@ class Customer {
       const updatedCustomer = await Customer.pool.query(updateQuery);
       return updatedCustomer.rows[0];
     } catch (err) {
-      console.log('err :>> ', err);
+      throw new Error(err.detail);
     }
   }
   static async deleteById (id) {
@@ -70,7 +68,7 @@ class Customer {
       const deletedCustomer = await Customer.pool.query(deleteQuery);
       return deletedCustomer.rows[0];
     } catch (err) {
-      console.log('err :>> ', err);
+      throw new Error(err.detail);
     }
   }
 }
