@@ -16,11 +16,9 @@ module.exports.createCustomer = async (req, res) => {
 };
 
 module.exports.getAllCustomers = async (req, res) => {
+  const { pagination } = req;
   try {
-    const foundCustomers = await Customer.getAll({
-      limit: 10,
-      offset: 0,
-    });
+    const foundCustomers = await Customer.getAll(pagination);
     res.status(200).send(foundCustomers);
   } catch (err) {
     res.status(500).send('Server Error');

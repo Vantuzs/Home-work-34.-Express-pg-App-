@@ -44,4 +44,4 @@ Content-Type: application/json
 
 ### 200
 
-GET http://localhost:5000/api/customers
+GET http://localhost:5000/api/customers?page=2&results=5
