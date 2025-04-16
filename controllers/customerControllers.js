@@ -44,9 +44,40 @@ module.exports.getByIdCustomer = async (req, res, next) => {
   }
 };
 
-module.exports.updateByIdCustomer = (req, res, next) => {};
+module.exports.updateByIdCustomer = async (req, res, next) => {
+  const {params: {id},body} = req;
+  console.log(id);
+  console.log(body);
 
-module.exports.deleteByIdCustomer = (req, res, next) => {};
+  try {
+    const updatedCustomer = await Customer.updateById(id,body)
+      
+      if(!updatedCustomer){
+        return res.status(404).send('Customer Not Found');
+      }
+
+      res.status(200).send(updatedCustomer)
+
+  } catch (error) {
+    next(error)
+  }
+};
+
+module.exports.deleteByIdCustomer = async (req, res, next) => {
+  const {params: {id}} = req;
+  // console.log(id);
+try {
+  const deleteCustomer = await Customer.deleteById(id)
+  if(!deleteCustomer) {
+    return res.status(404).send('Customer Not found')
+  }
+  res.status(200).send(deleteCustomer)
+  
+} catch (error) {
+  next(error)
+}
+
+};
 
 // {createCustomer, ..., deleteByIdCustomer}
 

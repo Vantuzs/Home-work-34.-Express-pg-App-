@@ -1,10 +1,10 @@
 class Customer {
-  static async create ({ firstName, lastName, email, tel }) {
+  static async create ({ firstName, lastName, email, is_subscribe ,gender,weight,birthday }) {
     try {
       // сформувати запит
       const insertQuery = `
-        INSERT INTO customers (first_name, last_name, email, tel)
-        VALUES ('${firstName}', '${lastName}', '${email}', '${tel}')
+        INSERT INTO users (first_name, last_name, email,is_subscribe, gender,weight,birthday)
+        VALUES ('${firstName}', '${lastName}', '${email}','${is_subscribe}', '${gender}', '${weight}','${birthday}')
         RETURNING *
       `;
       const createdCustomer = await Customer.pool.query(insertQuery); // виконати його
@@ -17,7 +17,7 @@ class Customer {
     try {
       const selectAllQuery = `
         SELECT *
-        FROM customers
+        FROM users
         ORDER BY id
         LIMIT ${limit} OFFSET ${offset}
       `;
@@ -31,7 +31,7 @@ class Customer {
     try {
       const selectQuery = `
         SELECT *
-        FROM customers
+        FROM users
         WHERE id = ${id}
       `;
       const foundCustomer = await Customer.pool.query(selectQuery);
@@ -40,14 +40,17 @@ class Customer {
       throw new Error(err.detail);
     }
   }
-  static async updateById (id, { firstName, lastName, email, tel }) {
+  static async updateById (id, { firstName, lastName, email, is_subscribe,gender,weight,birthday }) {
     try {
       const updateQuery = `
-        UPDATE customers
-        SET first_name = ${firstName}, 
-            last_name = ${lastName}, 
-            email = ${email}, 
-            tel = ${tel}
+        UPDATE users
+        SET first_name = '${firstName}', 
+            last_name = '${lastName}', 
+            email = '${email}', 
+            is_subscribe = ${is_subscribe},
+            gender = '${gender}',
+            weight = ${weight},
+            birthday = '${birthday}'
         WHERE id = ${id}
         RETURNING *
       `;
@@ -61,7 +64,7 @@ class Customer {
     try {
       const deleteQuery = `
         DELETE
-        FROM customers
+        FROM users
         WHERE id = ${id}
         RETURNING *
       `;

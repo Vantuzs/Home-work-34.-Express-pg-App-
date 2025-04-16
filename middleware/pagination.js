@@ -1,6 +1,6 @@
 module.exports.paginateCustomer = (req, res, next) => {
   // page, results => limit, offset
-  const { page = 1, results = 10 } = req.query;
+  const { page = 1, results = 100 } = req.query;
 
   const pagination = {
     limit: Number(results),

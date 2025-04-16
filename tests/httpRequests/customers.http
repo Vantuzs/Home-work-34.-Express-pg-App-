@@ -1,21 +1,24 @@
-### 200 {}
+### 200 {} getCustomer
 
-GET http://localhost:5000/api/customers/4
+GET http://localhost:5000/api/customers/4450
 
 ### 404
 
 GET http://localhost:5000/api/customers/100
 
-### 201 {}
+### createCustomer
 
 POST http://localhost:5000/api/customers
 Content-Type: application/json
 
 {
-  "firstName": "Test",
+  "firstName": "Trolololo123",
   "lastName": "Testovych",
-  "email":"mail@mail.com",
-  "tel": "+380123654788"
+  "email":"trolololo@mail.com",
+  "is_subscribe":true,
+  "gender": "male",
+  "birthday": "2000-12-12",
+  "weight": 74
 }
 
 ### 500
@@ -36,12 +39,92 @@ POST http://localhost:5000/api/customers
 Content-Type: application/json
 
 {
-  "firstName": "Test",
+  "firstName": "Testic",
   "lastName": "Testovych",
-  "email":"mail@mail.com",
+  "email":"maewqil@mail.com",
   "tel": "+38083789"
 }
 
 ### 200
 
 GET http://localhost:5000/api/customers?page=2&results=5
+
+### get customer
+
+GET http://localhost:5000/api/customers
+
+
+
+### updateCustomer
+
+PATCH http://localhost:5000/api/customers/4500
+Content-Type: application/json
+
+{
+  "firstName": "Agugu123321312",
+  "lastName": "Aguggovisssch",
+  "email":"guguggaga@mail.com",
+  "is_subscribe":true,
+  "gender": "male",
+  "birthday": "2000-12-13",
+  "weight": 75
+}
+
+#### delete Customer
+
+DELETE http://localhost:5000/api/customers/6508
+
+
+##############################################3
+
+### getPhone
+
+GET http://localhost:5000/api/phones/2800
+
+
+### createPhone
+POST http://localhost:5000/api/phones
+Content-Type: application/json
+
+{
+        "brand": "Nokia",
+        "model": "Pro 3000 AquwaDorski123",
+        "category": "phones",
+        "price": 1200,
+        "quantity": 150
+}
+
+
+### updatePhone 
+
+PATCH http://localhost:5000/api/phones/2790
+Content-Type: application/json
+
+{
+        "brand": "Nokia",
+        "model": "Pro 3000 Nerozikori",
+        "category": "phones",
+        "price": 1200,
+        "quantity": 123
+}
+
+### deletePhone
+
+DELETE http://localhost:5000/api/phones/2800
+
+### getAllPhones
+
+GET http://localhost:5000/api/phones
+
+### get100Phones
+
+GET http://localhost:5000/api/phones?page=2
+
+
+### Получение всех телефонов определённом марки, купленой определйнным пользователем
+
+GET http://localhost:5000/api/phones/4036/Huawai
+
+### Получение всех купленых марок телефона куплеными определйнным пользователем В определённый период времени
+
+GET http://localhost:5000/api/phones/4036/2025-02-20/2025-03-10

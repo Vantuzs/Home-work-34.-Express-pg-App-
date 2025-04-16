@@ -5,8 +5,8 @@ const Phone = require('./phone');
 const connectionOptions = {
   user: 'postgres',
   host: 'localhost',
-  database: 'phones_sales',
-  password: 'admin',
+  database: 'students',
+  password: 'postgres1478',
   port: 5432,
 };
 
