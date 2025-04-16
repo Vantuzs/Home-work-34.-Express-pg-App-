@@ -49,3 +49,5 @@ module.exports.updateByIdCustomer = (req, res, next) => {};
 module.exports.deleteByIdCustomer = (req, res, next) => {};
 
 // {createCustomer, ..., deleteByIdCustomer}
+
+// test
